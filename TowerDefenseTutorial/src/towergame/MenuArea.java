@@ -4,7 +4,8 @@ package towergame;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.List;
+import java.util.List;
+
 import java.awt.image.BufferedImage;
 
 import jgame.GContainer;
@@ -16,11 +17,11 @@ public class MenuArea extends GContainer {
 	
 
 	public MenuArea() {
-		setSize(500, 100);
+		setSize(100, 500);
 		this.setBackgroundColor(Color.BLACK);
 
 		BufferedImage bg = ImageCache.forClass(TowerGame.class).get(
-				"buttons/Tile.png");
+				"areas/menuarea.png");
 
 		// set enemies
 		GSprite bi = new GSprite(bg);
@@ -32,14 +33,16 @@ public class MenuArea extends GContainer {
 	}
 
 	
-	 List <Image> tileImages = ImageCache.forClass(TowerGame.class).getSequential( "tiles/t", 1, 5,".png"); 
+	 List <Image> tileImages = ImageCache.getSequentialImages( "tiles/d", 1, 5,".png"); 
 	 
-	private void setTile(int i) {
-		Tile tile = new Tile();
-		tile.setAnchorTopLeft();
-		tile.setScale(.95);
-		tile.setY(i * 95 + 10);
-		add(tile);
+	private void setTile(int yLoc) 
+	{
+		Tile t = new Tile(tileImages.get(yLoc));
+		t.setAnchorTopLeft();
+		t.setX(5);
+		addAtCenter(t);
+		t.setX(4);
+		t.setLocation(5,yLoc * 115 + 25);
 	}
 
 }
