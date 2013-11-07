@@ -10,11 +10,18 @@ import jgame.ImageCache;
 public class Tile extends GButton {
 	
 	public Tile(Image image) {
-		setSize(92, 96);
-		GSprite sNone = ImageCache.getSprite("tiles/tile.png");
+		setSize(80	, 80);
+		
+		GSprite sNone = ImageCache.getSprite("tiles/tilenone.png");
+		GSprite sHover = ImageCache.getSprite("tiles/tilehover.png");
+		GSprite sPressed = ImageCache.getSprite("tiles/tilepressed.png");
+		
 		setStateSprite(ButtonState.NONE, sNone);
-		GSprite sIcon = new GSprite(image);
-		sIcon.setScale(0.8);
-		addAtCenter(sIcon);
+		setStateSprite(ButtonState.HOVERED, sHover);
+		setStateSprite(ButtonState.PRESSED, sPressed);
+		
+		GSprite tIcon = new GSprite(image);
+		tIcon.setScale(0.8);
+		addAtCenter(tIcon);
 	}
 }

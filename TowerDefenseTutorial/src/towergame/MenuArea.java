@@ -20,8 +20,7 @@ public class MenuArea extends GContainer {
 		setSize(100, 500);
 		this.setBackgroundColor(Color.BLACK);
 
-		BufferedImage bg = ImageCache.forClass(TowerGame.class).get(
-				"areas/menuarea.png");
+		BufferedImage bg = ImageCache.getImage("areas/menuarea.png");
 
 		// set enemies
 		GSprite bi = new GSprite(bg);
@@ -35,14 +34,14 @@ public class MenuArea extends GContainer {
 	
 	 List <Image> tileImages = ImageCache.getSequentialImages( "tiles/d", 1, 5,".png"); 
 	 
-	private void setTile(int yLoc) 
+	private void setTile(int i) 
 	{
-		Tile t = new Tile(tileImages.get(yLoc));
+		Tile t = new Tile(tileImages.get(i));
 		t.setAnchorTopLeft();
-		t.setX(5);
 		addAtCenter(t);
+		t.setScale(0.9);
 		t.setX(4);
-		t.setLocation(5,yLoc * 115 + 25);
+		t.setLocation(5,i * 115 + 25);
 	}
 
 }

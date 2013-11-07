@@ -3,11 +3,19 @@ package towergame;
 import jgame.GContainer;
 import jgame.ImageCache;
 
-public class l1PlayArea extends GContainer {
+public class LOnePlayArea extends GContainer {
 
-	public l1PlayArea() {
+	PlayAreaSky sky;
+
+	public LOnePlayArea() {
+		
+		/*sky = new PlayAreaSky();
 		setSize(800, 600);
+		addAtCenter(sky);*/
+		
 		setBackgroundSprite(ImageCache.getSprite("areas/bg2.png"));
 		setAnchorTopLeft();
+		
+		
 	}
 }
