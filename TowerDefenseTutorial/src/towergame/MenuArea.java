@@ -4,9 +4,8 @@ package towergame;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.util.List;
-
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import jgame.GContainer;
 import jgame.GSprite;
@@ -32,7 +31,7 @@ public class MenuArea extends GContainer {
 	}
 
 	
-	 List <Image> tileImages = ImageCache.getSequentialImages( "tiles/d", 1, 5,".png"); 
+	List <Image> tileImages = ImageCache.getSequentialImages( "tiles/d", 1, 5,".png"); 
 	 
 	private void setTile(int i) 
 	{

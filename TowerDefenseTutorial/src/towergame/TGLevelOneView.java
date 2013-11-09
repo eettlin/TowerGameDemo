@@ -1,8 +1,11 @@
 package towergame;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import jgame.GContainer;
+import jgame.GSprite;
+import jgame.ImageCache;
 
 public class TGLevelOneView extends GContainer {
 	
@@ -25,5 +28,17 @@ public class TGLevelOneView extends GContainer {
 		mal1.setLocation(0, 0);
 		add(mal1);
 		setBackgroundColor(Color.BLACK);
+	}
+	
+	public void initializeTurret(){
+		System.out.println("Initializing a turret");
+		GSprite imgs = ImageCache.getSprite("tiles/d3.png");
+		Image img  = ImageCache.getImage("tiles/d1.png");
+		GSprite imgs2 = new GSprite(img);
+		
+		TurretOne trt = new TurretOne(ImageCache.getImage("tiles/d1.png"));
+		// Okay ; I have tried it in various ways
+		
+		this.pal1.addAtCenter(trt);
 	}
 }

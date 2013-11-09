@@ -1,21 +1,20 @@
 package towergame;
 
+import java.awt.Image;
+
 import jgame.GContainer;
+import jgame.GSprite;
 import jgame.ImageCache;
 
 public class LOnePlayArea extends GContainer {
 
-	PlayAreaSky sky;
 
 	public LOnePlayArea() {
 		
-		/*sky = new PlayAreaSky();
-		setSize(800, 600);
-		addAtCenter(sky);*/
-		
-		setBackgroundSprite(ImageCache.getSprite("areas/bg2.png"));
+		setBackgroundSprite(ImageCache.getSprite("areas/bg1.png"));
 		setAnchorTopLeft();
 		
-		
+		TurretOne t2 = new TurretOne(ImageCache.getImage("turrets/dt1.png"));
+		this.addAtCenter(t2);
 	}
 }
