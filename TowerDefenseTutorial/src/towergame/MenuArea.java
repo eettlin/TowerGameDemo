@@ -35,7 +35,7 @@ public class MenuArea extends GContainer {
 	 
 	private void setTile(int i) 
 	{
-		Tile t = new Tile(tileImages.get(i));
+		Tile t = new Tile(tileImages.get(i), i);
 		t.setAnchorTopLeft();
 		addAtCenter(t);
 		t.setScale(0.9);

@@ -12,7 +12,7 @@ import jgame.listener.ButtonListener;
 public class Tile extends GButton {
 
 	
-	public Tile( Image image) {
+	public Tile( Image image, final int turretNumber ) {
 		
 		
 		setSize(80, 80);
@@ -28,12 +28,14 @@ public class Tile extends GButton {
 		GSprite tIcon = new GSprite(image);
 		tIcon.setScale(0.8);
 		addAtCenter(tIcon);
-
+		
 		addListener(new ButtonListener() {
 			@Override
 			public void mouseClicked(Context context) {
-				getFirstAncestorOf(TGLevelOneView.class).initializeTurret();
+				getFirstAncestorOf(TGLevelOneView.class).initializeTurret(turretNumber);
 			}
 		});
+
+		
 	}
 }

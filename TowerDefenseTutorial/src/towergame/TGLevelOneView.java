@@ -30,15 +30,33 @@ public class TGLevelOneView extends GContainer {
 		setBackgroundColor(Color.BLACK);
 	}
 	
-	public void initializeTurret(){
-		System.out.println("Initializing a turret");
-		GSprite imgs = ImageCache.getSprite("tiles/d3.png");
-		Image img  = ImageCache.getImage("tiles/d1.png");
-		GSprite imgs2 = new GSprite(img);
-		
-		TurretOne trt = new TurretOne(ImageCache.getImage("tiles/d1.png"));
-		// Okay ; I have tried it in various ways
-		
-		this.pal1.addAtCenter(trt);
+	public void initializeTurret(int tn){
+		//TurretOne t = new TurretOne(ImageCache.getImage("turrets/dt1.png"));
+		Turret t  = chooseTurret(tn);
+		this.pal1.addAtCenter(t);
 	}
+	
+	public Turret chooseTurret(int turretNumber)
+	{
+		switch(turretNumber){
+		case 0:
+			return new TurretOne(ImageCache.getImage("turrets/dt1.png"));
+		case 1:
+			return new TurretTwo(ImageCache.getImage("turrets/dt2.png"));
+		case 2:
+			return new TurretThree(ImageCache.getImage("turrets/dt3.png"));
+		case 3:
+			return new TurretFour(ImageCache.getImage("turrets/dt4.png"));
+		case 4:
+			return new TurretFive(ImageCache.getImage("turrets/dt5.png"));
+		
+		default:
+			return null;
+		}
+		
+		
+	}
+	
+    
+	
 }

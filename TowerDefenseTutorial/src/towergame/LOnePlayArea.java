@@ -13,8 +13,6 @@ public class LOnePlayArea extends GContainer {
 		
 		setBackgroundSprite(ImageCache.getSprite("areas/bg1.png"));
 		setAnchorTopLeft();
-		
-		TurretOne t2 = new TurretOne(ImageCache.getImage("turrets/dt1.png"));
-		this.addAtCenter(t2);
+
 	}
 }
