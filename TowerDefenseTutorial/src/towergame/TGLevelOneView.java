@@ -1,17 +1,21 @@
 package towergame;
 
 import java.awt.Color;
-import java.awt.Image;
 
+import jgame.Context;
 import jgame.GContainer;
-import jgame.GSprite;
+import jgame.GObject;
 import jgame.ImageCache;
+import jgame.controller.MouseLocationController;
+import jgame.listener.LocalClickListener;
 
 public class TGLevelOneView extends GContainer {
 	
 	private LOnePlayArea pal1 = new LOnePlayArea();
 	private l1InfoArea ial1 = new l1InfoArea();
 	private MenuArea mal1 = new MenuArea();
+	
+	private boolean settingTurret = false;
 	
 	public TGLevelOneView() {
 		setSize(900,700);
@@ -31,9 +35,29 @@ public class TGLevelOneView extends GContainer {
 	}
 	
 	public void initializeTurret(int tn){
-		//TurretOne t = new TurretOne(ImageCache.getImage("turrets/dt1.png"));
+		
+		if(settingTurret){
+			return;
+		}
+		settingTurret = true;
+		
 		Turret t  = chooseTurret(tn);
 		this.pal1.addAtCenter(t);
+		
+		final MouseLocationController mlc = new MouseLocationController();
+		t.addController(mlc);
+		
+		final LocalClickListener dropListener  = new LocalClickListener(){
+			@Override
+			public void invoke(GObject target, Context context) {
+				target.removeController(mlc);
+				target.removeListener(this);
+				
+				settingTurret = false;
+			}
+			
+		};
+		t.addListener(dropListener);
 	}
 	
 	public Turret chooseTurret(int turretNumber)
