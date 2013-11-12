@@ -1,6 +1,7 @@
 package towergame;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.util.List;
 
 import jgame.Context;
@@ -12,22 +13,36 @@ import jgame.listener.FrameListener;
 public abstract class Turret extends GSprite {
 	public Turret(List<Image> listImages) {
 		super(listImages);
-		
+
 		setScale(.25);
 		this.setPlaying(false);
 		this.addListener(new FrameListener() {
 			@Override
 			public void invoke(GObject target, Context context) {
-				//target.face(getParent().getWidth() / 2,  getParent().getHeight() / 2);
-				//target.setRotation(target.getRotation());
-				fireBullet();
+
+				Point pt = context.getMouseRelative();
+				if (pt != null) {
+					double faceX = pt.getX();
+					double faceY = pt.getY();
+
+					double angleToEnemy = target.angleTo(faceX, faceY);
+					angleToEnemy -= 45;
+					angleToEnemy %= 360;
+					if (angleToEnemy < 0) {
+						angleToEnemy += 360;
+					}
+					int frameIndex = (int) (angleToEnemy / 45);
+					setFrameNumber(frameIndex);
+					fireBullet();
+				}
 			}
 		});
 	}// constructor
 
 	public abstract Bullet createBullet();
+
 	public abstract double getBulletSpeed();
-	
+
 	public void fireBullet() {
 		final Bullet b = createBullet();
 		b.setRotation(this.getRotation());
@@ -39,6 +54,5 @@ public abstract class Turret extends GSprite {
 		this.addSibling(b);
 	}
 
-	
 } // Class
 
