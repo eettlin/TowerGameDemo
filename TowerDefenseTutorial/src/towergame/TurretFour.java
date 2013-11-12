@@ -5,8 +5,8 @@ import java.awt.Image;
 import jgame.ImageCache;
 
 public class TurretFour extends Turret {
-	public TurretFour(Image i) {
-		super(i);
+	public TurretFour() {
+		super(ImageCache.getSequentialImages("turretlist/p1", 1, 8, ".png", 3));
 	}
 
 	@Override

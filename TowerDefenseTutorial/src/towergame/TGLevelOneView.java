@@ -16,7 +16,7 @@ public class TGLevelOneView extends GContainer {
 	private MenuArea mal1 = new MenuArea();
 	
 	private boolean settingTurret = false;
-
+    
 	public TGLevelOneView() {
 		setSize(900,700);
 		
@@ -65,15 +65,15 @@ public class TGLevelOneView extends GContainer {
 	{
 		switch(turretNumber){
 		case 0:
-			return new TurretOne(ImageCache.getImage("turrets/dt1.png"));
+			return new TurretOne();
 		case 1:
-			return new TurretTwo(ImageCache.getImage("turrets/dt2.png"));
+			return new TurretTwo();
 		case 2:
-			return new TurretThree(ImageCache.getImage("turrets/dt3.png"));
+			return new TurretThree();
 		case 3:
-			return new TurretFour(ImageCache.getImage("turrets/dt4.png"));
+			return new TurretFour();
 		case 4:
-			return new TurretFive(ImageCache.getImage("turrets/dt5.png"));
+			return new TurretFive();
 		
 		default:
 			return null;

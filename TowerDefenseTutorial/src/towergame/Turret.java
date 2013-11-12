@@ -1,6 +1,7 @@
 package towergame;
 
 import java.awt.Image;
+import java.util.List;
 
 import jgame.Context;
 import jgame.GObject;
@@ -9,16 +10,16 @@ import jgame.controller.ConstantMovementController;
 import jgame.listener.FrameListener;
 
 public abstract class Turret extends GSprite {
-	public Turret(Image image) {
-		super(image);
+	public Turret(List<Image> listImages) {
+		super(listImages);
 		
+		setScale(.25);
+		this.setPlaying(false);
 		this.addListener(new FrameListener() {
-
 			@Override
 			public void invoke(GObject target, Context context) {
-				target.face(getParent().getWidth() / 2,
-						getParent().getHeight() / 2);
-				target.setRotation(target.getRotation());
+				//target.face(getParent().getWidth() / 2,  getParent().getHeight() / 2);
+				//target.setRotation(target.getRotation());
 				fireBullet();
 			}
 		});
