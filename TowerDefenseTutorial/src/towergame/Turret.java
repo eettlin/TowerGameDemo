@@ -14,7 +14,7 @@ public abstract class Turret extends GSprite {
 	public Turret(List<Image> listImages) {
 		super(listImages);
 
-		setScale(.25);
+		setScale(.50);
 		this.setPlaying(false);
 		this.addListener(new FrameListener() {
 			@Override
@@ -33,7 +33,7 @@ public abstract class Turret extends GSprite {
 					}
 					int frameIndex = (int) (angleToEnemy / 45);
 					setFrameNumber(frameIndex);
-					fireBullet();
+					fireBullet(angleToEnemy);
 				}
 			}
 		});
@@ -43,14 +43,14 @@ public abstract class Turret extends GSprite {
 
 	public abstract double getBulletSpeed();
 
-	public void fireBullet() {
+	public void fireBullet(double ate) {
 		final Bullet b = createBullet();
-		b.setRotation(this.getRotation());
+		b.setRotation(ate);
 		final ConstantMovementController c = ConstantMovementController
-				.createPolar(getBulletSpeed(), getRotation());
+				.createPolar(getBulletSpeed(), ate);
 		b.addController(c);
 		snapAnchor(b);
-		b.moveAtAngle(getWidth() / 2 + 20, getRotation());
+		b.moveAtAngle(getScaleX()*(getWidth() / 2) + 20, ate);
 		this.addSibling(b);
 	}
 
