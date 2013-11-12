@@ -9,14 +9,17 @@ import jgame.GObject;
 import jgame.GSprite;
 import jgame.controller.ConstantMovementController;
 import jgame.listener.FrameListener;
+import jgame.listener.TimerListener;
 
 public abstract class Turret extends GSprite {
+	
+	
 	public Turret(List<Image> listImages) {
 		super(listImages);
 
-		setScale(.50);
+		setScale(1.0);
 		this.setPlaying(false);
-		this.addListener(new FrameListener() {
+		this.addListener(new TimerListener(10) {
 			@Override
 			public void invoke(GObject target, Context context) {
 
@@ -26,12 +29,11 @@ public abstract class Turret extends GSprite {
 					double faceY = pt.getY();
 
 					double angleToEnemy = target.angleTo(faceX, faceY);
-					angleToEnemy -= 45;
 					angleToEnemy %= 360;
 					if (angleToEnemy < 0) {
 						angleToEnemy += 360;
 					}
-					int frameIndex = (int) (angleToEnemy / 45);
+					int frameIndex = (int) (angleToEnemy / 8);
 					setFrameNumber(frameIndex);
 					fireBullet(angleToEnemy);
 				}
@@ -50,7 +52,8 @@ public abstract class Turret extends GSprite {
 				.createPolar(getBulletSpeed(), ate);
 		b.addController(c);
 		snapAnchor(b);
-		b.moveAtAngle(getScaleX()*(getWidth() / 2) + 20, ate);
+		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 20, ate);
+		b.setScale(.5);
 		this.addSibling(b);
 	}
 

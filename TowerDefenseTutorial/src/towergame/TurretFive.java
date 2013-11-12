@@ -6,7 +6,7 @@ import jgame.ImageCache;
 
 public class TurretFive extends Turret {
 	public TurretFive() {
-		super(ImageCache.getSequentialImages("turretlist/p1", 1, 8, ".png", 3));
+		super(ImageCache.getSequentialImages("turretlist/Dragon05Render/", 1, 45, ".png", 3));
 	}
 
 	@Override
@@ -16,6 +16,6 @@ public class TurretFive extends Turret {
 
 	@Override
 	public double getBulletSpeed() {
-		return 30;
+		return 20;
 	}
 }
