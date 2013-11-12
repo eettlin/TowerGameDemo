@@ -16,7 +16,7 @@ public class TGLevelOneView extends GContainer {
 	private MenuArea mal1 = new MenuArea();
 	
 	private boolean settingTurret = false;
-	
+
 	public TGLevelOneView() {
 		setSize(900,700);
 		
@@ -35,8 +35,8 @@ public class TGLevelOneView extends GContainer {
 	}
 	
 	public void initializeTurret(int tn){
-		
-		if(settingTurret){
+		if(settingTurret)
+		{
 			return;
 		}
 		settingTurret = true;
@@ -54,6 +54,7 @@ public class TGLevelOneView extends GContainer {
 				target.removeListener(this);
 				
 				settingTurret = false;
+
 			}
 			
 		};
