@@ -42,6 +42,7 @@ public class TGLevelOneView extends GContainer {
 		settingTurret = true;
 		
 		Turret t  = chooseTurret(tn);
+		t.setScale(.33);
 		this.pal1.addAtCenter(t);
 		
 		final MouseLocationController mlc = new MouseLocationController();

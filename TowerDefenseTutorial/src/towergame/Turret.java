@@ -49,11 +49,11 @@ public abstract class Turret extends GSprite {
 		final Bullet b = createBullet();
 		b.setRotation(ate);
 		final ConstantMovementController c = ConstantMovementController
-				.createPolar(getBulletSpeed(), ate);
+				.createPolar(getBulletSpeed(), ate);  // ate = angle to enemy
 		b.addController(c);
 		snapAnchor(b);
 		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 20, ate);
-		b.setScale(.5);
+		b.setScale(.2);
 		this.addSibling(b);
 	}
 
