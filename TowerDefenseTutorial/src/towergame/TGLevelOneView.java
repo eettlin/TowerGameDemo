@@ -53,11 +53,8 @@ public class TGLevelOneView extends GContainer {
 			public void invoke(GObject target, Context context) {
 				target.removeController(mlc);
 				target.removeListener(this);
-				
 				settingTurret = false;
-
 			}
-			
 		};
 		t.addListener(dropListener);
 	}

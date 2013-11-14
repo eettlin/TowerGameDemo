@@ -8,7 +8,6 @@ import jgame.ImageCache;
 
 public class Falg extends GSprite {
 	public Falg() {
-		super(ImageCache.getSequentialImages("areas/flag", 1, 54, ".png", 2));
-		
+		super(ImageCache.getSequentialImages("areas/flag/flag", 1, 54, ".png", 3));
 	}
 }

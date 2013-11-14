@@ -52,7 +52,7 @@ public abstract class Turret extends GSprite {
 				.createPolar(getBulletSpeed(), ate);  // ate = angle to enemy
 		b.addController(c);
 		snapAnchor(b);
-		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 20, ate);
+		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 3, ate);
 		b.setScale(.2);
 		this.addSibling(b);
 	}
