@@ -72,7 +72,7 @@ public class LOnePlayArea extends GContainer {
 		moon.addController(st);
 		
 		Peasant p1 = new Peasant();
-		addAt(p1, 700, 500);
+		add(p1);
 
 		setSize(810, 610);
 	}
