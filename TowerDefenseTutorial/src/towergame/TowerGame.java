@@ -29,10 +29,7 @@ public class TowerGame extends Game {
 		
 		TGLevelOneView tgl1v = new TGLevelOneView();
 		root.addView(Views.LEVEL_ONE, tgl1v);
-		
-		
-		
-		
+
 	}
 	
 	public enum Views{
