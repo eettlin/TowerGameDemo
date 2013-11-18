@@ -42,8 +42,8 @@ public abstract class Turret extends GSprite {
 	}// constructor
 
 	public abstract Bullet createBullet();
-
 	public abstract double getBulletSpeed();
+	public abstract int getTurretValue();
 
 	public void fireBullet(double ate) {
 		final Bullet b = createBullet();

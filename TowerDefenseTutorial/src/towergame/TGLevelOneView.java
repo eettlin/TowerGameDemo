@@ -11,13 +11,15 @@ import jgame.listener.LocalClickListener;
 
 public class TGLevelOneView extends GContainer {
 	
-	private LOnePlayArea pal1 = new LOnePlayArea();
-	private l1InfoArea ial1 = new l1InfoArea();
-	private MenuArea mal1 = new MenuArea();
+	private Bank levelOneBank = new Bank(300);
 	
+	private LOnePlayArea pal1 = new LOnePlayArea();
+	private l1InfoArea ial1 = new l1InfoArea(levelOneBank);
+	private MenuArea mal1 = new MenuArea();
 	private boolean settingTurret = false;
     
 	public TGLevelOneView() {
+		
 		setSize(900,700);
 		
 		pal1.setAnchorTopLeft();
@@ -42,8 +44,18 @@ public class TGLevelOneView extends GContainer {
 		settingTurret = true;
 		
 		Turret t  = chooseTurret(tn);
+		//Check to see if I have suff funds for a turret else return
+		if(t.getTurretValue() > levelOneBank.getBankValue())
+		{
+			return;
+		} 
+		//change bank value
+		levelOneBank.changeBankValue(-t.getTurretValue());
+		//update info area
+		
 		t.setScale(.33);
 		this.pal1.addAtCenter(t);
+		
 		
 		final MouseLocationController mlc = new MouseLocationController();
 		t.addController(mlc);
