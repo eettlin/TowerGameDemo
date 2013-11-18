@@ -13,26 +13,46 @@ import jgame.listener.TimerListener;
 
 public abstract class Turret extends GSprite {
 	
-	
+	double ate2 = 0;
 	public Turret(List<Image> listImages) {
 		super(listImages);
 
 		setScale(1.0);
 		this.setPlaying(false);
-		this.addListener(new TimerListener(10) {
+		this.addListener(new TimerListener(3) {
 			@Override
 			public void invoke(GObject target, Context context) {
 
-				Point pt = context.getMouseRelative();
+				List<Peasant> pl = context.getInstancesOfClass(Peasant.class);
+				double clossest  = 10000;
+				Peasant currentPeasant = null;
+				if(pl.isEmpty())
+				{
+					return;
+				}
+				
+				for(Peasant p :pl)
+				{
+					if (target.distanceTo(p) < clossest) 
+					{
+						System.out.println("--> " + target.distanceTo(p));
+						clossest = target.distanceTo(p);
+						currentPeasant = p;
+					}
+				}
+				
+				Point pt = new Point((int)currentPeasant.getX(),(int)currentPeasant.getY());
+				
 				if (pt != null) {
-					double faceX = pt.getX();
-					double faceY = pt.getY();
-
-					double angleToEnemy = target.angleTo(faceX, faceY);
+					//System.out.println("pt" + pt);
+					
+					double angleToEnemy = target.angleTo(pt);
 					angleToEnemy %= 360;
+					
 					if (angleToEnemy < 0) {
 						angleToEnemy += 360;
 					}
+					ate2 = angleToEnemy;
 					int frameIndex = (int) (angleToEnemy / 8);
 					setFrameNumber(frameIndex);
 					fireBullet(angleToEnemy);
@@ -47,12 +67,12 @@ public abstract class Turret extends GSprite {
 
 	public void fireBullet(double ate) {
 		final Bullet b = createBullet();
-		b.setRotation(ate);
+		b.setRotation(ate2);
 		final ConstantMovementController c = ConstantMovementController
-				.createPolar(getBulletSpeed(), ate);  // ate = angle to enemy
+				.createPolar(getBulletSpeed(), ate2);  // ate = angle to enemy
 		b.addController(c);
 		snapAnchor(b);
-		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 3, ate);
+		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 3, ate2);
 		b.setScale(.2);
 		this.addSibling(b);
 	}

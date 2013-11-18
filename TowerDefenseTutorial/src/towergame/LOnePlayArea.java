@@ -2,12 +2,16 @@ package towergame;
 
 import java.awt.image.BufferedImage;
 
+import jgame.Context;
 import jgame.GContainer;
+import jgame.GObject;
 import jgame.GSprite;
 import jgame.ImageCache;
 import jgame.controller.Interpolation;
 import jgame.controller.MovementTween;
 import jgame.controller.ScaleTween;
+import jgame.listener.FrameListener;
+import jgame.listener.TimerListener;
 
 public class LOnePlayArea extends GContainer {
 
@@ -23,7 +27,7 @@ public class LOnePlayArea extends GContainer {
 		
 		BufferedImage bg = ImageCache.forClass(TowerGame.class).get(
 				"areas/bg6.png");
-		GSprite gs = new GSprite(bg);
+		final GSprite gs = new GSprite(bg);
 		addAt(gs, 400, 425);
 
 		final Falg flag1 = new Falg();//mid right
@@ -70,12 +74,18 @@ public class LOnePlayArea extends GContainer {
 
 		ScaleTween st = new ScaleTween(500, 1.2, 1);
 		moon.addController(st);
+		TimerListener fl = new TimerListener(120) {
+			@Override
+			public void invoke(GObject target, Context context) {
+				Peasant p1 = new Peasant();
+				ScaleTween psc = new ScaleTween(300, 1.25, .53);
+				p1.setAnchorPositionY(50);
+				p1.addController(psc);
+				gs.add(p1);
+			}
+		};
+		addListener(fl);
 		
-		Peasant p1 = new Peasant();
-		ScaleTween psc = new ScaleTween(300, 1.25, .53);
-		p1.setAnchorPositionY(50);
-		p1.addController(psc);
-		gs.add(p1);
 
 		setSize(810, 610);
 	}
