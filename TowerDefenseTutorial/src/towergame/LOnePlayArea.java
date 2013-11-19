@@ -85,8 +85,6 @@ public class LOnePlayArea extends GContainer {
 			}
 		};
 		addListener(fl);
-		
-
 		setSize(810, 610);
 	}
 }
