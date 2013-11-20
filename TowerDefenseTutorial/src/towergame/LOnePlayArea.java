@@ -20,35 +20,37 @@ public class LOnePlayArea extends GContainer {
 		SkyObject sky = new SkyObject();
 		add(sky);
 
-		final Sun sun = new Sun();//Add sun and moon before background is placed
+		final Sun sun = new Sun();// Add sun and moon before background is
+									// placed
 		addAt(sun, 700, 100);
 		final Moon moon = new Moon();
 		addAt(moon, 150, 700);
-		
+
 		BufferedImage bg = ImageCache.forClass(TowerGame.class).get(
 				"areas/bg6.png");
 		final GSprite gs = new GSprite(bg);
 		addAt(gs, 400, 425);
 
-		final Falg flag1 = new Falg();//mid right
+		final Falg flag1 = new Falg();// mid right
 		flag1.setScale(.33);
 		addAt(flag1, 98, 400);
-		
-		final Falg flag2 = new Falg();//far left
+
+		final Falg flag2 = new Falg();// far left
 		flag2.setScale(.23);
 		addAt(flag2, 42, 387);
-		
+
 		final Falg flag3 = new Falg();
 		flag3.setScale(.23);
 		addAt(flag3, 78, 390);
-		
-		final Falg flag4 = new Falg();//far right
+
+		final Falg flag4 = new Falg();// far right
 		flag4.setScale(.44);
 		addAt(flag4, 112, 374);
 
-		final Cloud cloud1 = new Cloud();  
+		final Cloud cloud1 = new Cloud();
 		addAt(cloud1, 600, 50);
-		MovementTween c1mt = new MovementTween(850, Interpolation.LINEAR, -900,	0); // cloud1 movement tween
+		MovementTween c1mt = new MovementTween(850, Interpolation.LINEAR, -900,
+				0); // cloud1 movement tween
 		cloud1.addController(c1mt);
 
 		final Cloud cloud2 = new Cloud();
@@ -81,7 +83,7 @@ public class LOnePlayArea extends GContainer {
 				ScaleTween psc = new ScaleTween(300, 1.25, .53);
 				p1.setAnchorPositionY(50);
 				p1.addController(psc);
-				gs.add(p1);
+				add(p1);
 			}
 		};
 		addListener(fl);
