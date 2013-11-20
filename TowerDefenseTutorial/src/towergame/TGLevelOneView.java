@@ -10,57 +10,54 @@ import jgame.controller.MouseLocationController;
 import jgame.listener.LocalClickListener;
 
 public class TGLevelOneView extends GContainer {
-	
+
 	private Bank levelOneBank = new Bank(300);
-	
+
 	private LOnePlayArea pal1 = new LOnePlayArea();
 	private l1InfoArea ial1 = new l1InfoArea(levelOneBank);
 	private MenuArea mal1 = new MenuArea();
 	private boolean settingTurret = false;
-    
+
 	public TGLevelOneView() {
-		
-		setSize(900,700);
-		
+
+		setSize(900, 700);
+
 		pal1.setAnchorTopLeft();
 		pal1.setLocation(100, 0);
 		add(pal1);
-		
+
 		ial1.setAnchorTopLeft();
 		ial1.setLocation(0, 600);
 		add(ial1);
-		
+
 		mal1.setAnchorTopLeft();
 		mal1.setLocation(0, 0);
 		add(mal1);
 		setBackgroundColor(Color.BLACK);
 	}
-	
-	public void initializeTurret(int tn){
-		if(settingTurret)
-		{
+
+	public void initializeTurret(int tn) {
+		if (settingTurret) {
+			return;
+		}
+
+		Turret t = chooseTurret(tn);
+		// Check to see if I have suff funds for a turret else return
+		if (t.getTurretValue() > levelOneBank.getBankValue()) {
 			return;
 		}
 		settingTurret = true;
-		
-		Turret t  = chooseTurret(tn);
-		//Check to see if I have suff funds for a turret else return
-		if(t.getTurretValue() > levelOneBank.getBankValue())
-		{
-			return;
-		} 
-		//change bank value
+		// change bank value
 		levelOneBank.changeBankValue(-t.getTurretValue());
-		//update info area
-		
+		// update info area
+
 		t.setScale(.33);
 		this.pal1.addAtCenter(t);
-		
-		
+
 		final MouseLocationController mlc = new MouseLocationController();
 		t.addController(mlc);
-		
-		final LocalClickListener dropListener  = new LocalClickListener(){
+
+		final LocalClickListener dropListener = new LocalClickListener() {
 			@Override
 			public void invoke(GObject target, Context context) {
 				target.removeController(mlc);
@@ -70,10 +67,9 @@ public class TGLevelOneView extends GContainer {
 		};
 		t.addListener(dropListener);
 	}
-	
-	public Turret chooseTurret(int turretNumber)
-	{
-		switch(turretNumber){
+
+	public Turret chooseTurret(int turretNumber) {
+		switch (turretNumber) {
 		case 0:
 			return new TurretOne();
 		case 1:
@@ -84,14 +80,11 @@ public class TGLevelOneView extends GContainer {
 			return new TurretFour();
 		case 4:
 			return new TurretFive();
-		
+
 		default:
 			return null;
 		}
-		
-		
+
 	}
-	
-    
-	
+
 }
