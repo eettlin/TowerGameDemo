@@ -18,11 +18,13 @@ public abstract class Turret extends GSprite {
 	private Point pt1;
 	private Point pt2;
 
+	private int counter = 5;
+
 	public Turret(List<Image> listImages) {
 		super(listImages);
 		setScale(1.0);
 		this.setPlaying(false);
-		this.addListener(new TimerListener(3) {
+		this.addListener(new FrameListener() {
 			@Override
 			public void invoke(GObject target, Context context) {
 
@@ -52,7 +54,10 @@ public abstract class Turret extends GSprite {
 					addSibling(pld);
 					int frameIndex = (int) (angleToEnemy / 8);
 					setFrameNumber(frameIndex);
-					fireBullet(ate2);
+					if (--counter == 0) {
+						counter = 5;
+						fireBullet(ate2);
+					}
 				}
 			}
 		});
