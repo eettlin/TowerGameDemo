@@ -13,11 +13,6 @@ import jgame.listener.TimerListener;
 
 public abstract class Turret extends GSprite {
 
-	private double ate2 = 0;
-	private PointLineDebug pld;
-	private Point pt1;
-	private Point pt2;
-
 	private int counter = 5;
 
 	public Turret(List<Image> listImages) {
@@ -47,16 +42,11 @@ public abstract class Turret extends GSprite {
 					if ((angleToEnemy %= 360) < 0) {
 						angleToEnemy += 360;
 					}
-					ate2 = angleToEnemy;
-					pld = new PointLineDebug(new Point((int) currentPeasant
-							.getX(), (int) currentPeasant.getY()), new Point(
-							(int) target.getX(), (int) target.getY()));
-					addSibling(pld);
 					int frameIndex = (int) (angleToEnemy / 8);
 					setFrameNumber(frameIndex);
 					if (--counter == 0) {
 						counter = 5;
-						fireBullet(ate2);
+						fireBullet(angleToEnemy);
 					}
 				}
 			}

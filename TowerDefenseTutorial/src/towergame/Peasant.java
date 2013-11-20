@@ -1,18 +1,16 @@
 package towergame;
 
-import java.awt.Image;
 import java.awt.Polygon;
-import java.util.List;
 
-import jgame.Context;
-import jgame.GObject;
 import jgame.GSprite;
 import jgame.ImageCache;
 import jgame.controller.PolygonController;
 import jgame.listener.BoundaryRemovalListener;
-import jgame.listener.FrameListener;
 
 public class Peasant extends GSprite {
+	
+	private int healthPoints = 100;
+	
 	public Peasant() {
 		super(ImageCache.getSequentialImages("enemies/peasant/peasant", 1, 19,
 				".png", 3));
@@ -41,10 +39,23 @@ public class Peasant extends GSprite {
 		BoundaryRemovalListener brl = new BoundaryRemovalListener();
 		this.addListener(brl);
 
+		
+	}
+
+	public int getHealthPoints() {
+		return healthPoints;
+	}
+
+	public void setHealthPoints(int healthPoints) {
+		this.healthPoints = healthPoints;
 	}
 
 	public double getSlowness() {
 		return 5;
+	}
+
+	public void changeHealthPoints(int i) {
+		healthPoints += i;
 	}
 
 }

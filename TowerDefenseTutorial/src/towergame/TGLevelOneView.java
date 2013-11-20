@@ -18,6 +18,17 @@ public class TGLevelOneView extends GContainer {
 	private MenuArea mal1 = new MenuArea();
 	private boolean settingTurret = false;
 
+	/**
+	 * This is a <em>delegate method</em>, as it simply delegates to
+	 * {@link Bank#changeBankValue(int)}.
+	 * 
+	 * @param delta
+	 *            the amount by which to change the bank
+	 */
+	public void changeBankValue(int delta) {
+		levelOneBank.changeBankValue(delta);
+	}
+
 	public TGLevelOneView() {
 
 		setSize(900, 700);
