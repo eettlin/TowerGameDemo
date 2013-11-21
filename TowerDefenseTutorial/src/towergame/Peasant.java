@@ -9,7 +9,7 @@ import jgame.listener.BoundaryRemovalListener;
 
 public class Peasant extends GSprite {
 	
-	private int healthPoints = 100;
+	private int healthPoints = 1000;
 	
 	public Peasant() {
 		super(ImageCache.getSequentialImages("enemies/peasant/peasant", 1, 19,
