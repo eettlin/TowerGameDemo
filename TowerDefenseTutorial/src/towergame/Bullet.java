@@ -28,6 +28,7 @@ public class Bullet extends GSprite {
 				List<Peasant> pl = context.hitTestClass(Peasant.class);
 				for (Peasant peasant : pl) {
 					peasant.changeHealthPoints(-10); // step 1
+					
 					if (peasant.getHealthPoints() <= 0) {
 						peasant.removeSelf(); // step 2
 

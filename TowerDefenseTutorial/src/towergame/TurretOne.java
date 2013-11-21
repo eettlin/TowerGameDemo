@@ -16,7 +16,7 @@ public class TurretOne extends Turret {
 
 	@Override
 	public double getBulletSpeed() {
-		return 15;
+		return 5;
 	}
 
 	@Override

@@ -33,6 +33,7 @@ public class HealthBar extends GObject {
 
 	public void setHealthPercentage(double healthPercentage) {
 		this.healthPercentage = healthPercentage;
+		System.out.println("healthPercentage = " + healthPercentage);
 	}
 
 }

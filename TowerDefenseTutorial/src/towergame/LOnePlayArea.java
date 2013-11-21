@@ -79,7 +79,7 @@ public class LOnePlayArea extends GContainer {
 		TimerListener fl = new TimerListener(120) {
 			@Override
 			public void invoke(GObject target, Context context) {
-				Peasant p1 = new Peasant();
+				Peasant p1 = new Peasant(500);
 				ScaleTween psc = new ScaleTween(300, 1.25, .53);
 				p1.setAnchorPositionY(50);
 				p1.addController(psc);

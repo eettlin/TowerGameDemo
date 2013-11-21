@@ -2,6 +2,7 @@ package towergame;
 
 import java.awt.Polygon;
 
+
 import jgame.GSprite;
 import jgame.ImageCache;
 import jgame.controller.PolygonController;
@@ -9,11 +10,27 @@ import jgame.listener.BoundaryRemovalListener;
 
 public class Peasant extends GSprite {
 	
-	private int healthPoints = 1000;
+
+	private double maxHealthPoints  = 100;
+	private double currentHealth;
+	HealthBar hb = new HealthBar();
 	
-	public Peasant() {
+	public Peasant(double maxHealthPoints) {
 		super(ImageCache.getSequentialImages("enemies/peasant/peasant", 1, 19,
 				".png", 3));
+		
+		this.maxHealthPoints = maxHealthPoints;
+		this.currentHealth = this.maxHealthPoints;
+		
+		
+
+		hb.setWidth(getWidth());
+		addAtCenter(hb);
+		hb.setY(this.getHeight() - hb.getHeight() / 2);
+		hb.setHealthPercentage(1);
+		
+
+		
 		// waypoints to follow map bg6.png in the areas folder
 		int[] x = new int[] { 742, 716, 691, 665, 639, 614, 588, 562, 537, 512,
 				486, 461, 436, 410, 385, 360, 335, 313, 299, 308, 285, 260,
@@ -41,21 +58,30 @@ public class Peasant extends GSprite {
 
 		
 	}
-
-	public int getHealthPoints() {
-		return healthPoints;
+	
+	public void setCurrentHealth(double currentHealth) {
+		this.currentHealth = currentHealth;
+		hb.setHealthPercentage(this.currentHealth / maxHealthPoints);
 	}
-
 	public void setHealthPoints(int healthPoints) {
-		this.healthPoints = healthPoints;
+		this.maxHealthPoints = healthPoints;
 	}
+	public void changeHealthPoints(int i) {
+		currentHealth += i;
+		hb.setHealthPercentage(this.currentHealth / maxHealthPoints);
+		//System.out.println(currentHealth);
+	}
+
+	public double getHealthPoints() {
+		return currentHealth;
+	}
+
+	
 
 	public double getSlowness() {
 		return 5;
 	}
 
-	public void changeHealthPoints(int i) {
-		healthPoints += i;
-	}
+	
 
 }

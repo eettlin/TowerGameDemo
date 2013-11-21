@@ -68,7 +68,7 @@ public abstract class Turret extends GSprite {
 		b.addController(c);
 		snapAnchor(b);
 		b.moveAtAngle(getScaleX() * (getWidth() / 2) + 3, ate);
-		b.setScale(.8);
+		b.setScale(.3);
 		this.addSibling(b);
 	}
 
