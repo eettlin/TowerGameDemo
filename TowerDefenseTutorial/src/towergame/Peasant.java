@@ -2,22 +2,25 @@ package towergame;
 
 import java.awt.Polygon;
 
-
+import jgame.Context;
+import jgame.GObject;
 import jgame.GSprite;
 import jgame.ImageCache;
 import jgame.controller.PolygonController;
+import jgame.controller.ScaleTween;
 import jgame.listener.BoundaryRemovalListener;
+import jgame.listener.TimerListener;
 
 public class Peasant extends GSprite {
 
-	private double maxHealthPoints  = 100;
+	private double maxHealthPoints = 100;
 	private double currentHealth;
 	HealthBar hb = new HealthBar();
-	
+
 	public Peasant(double maxHealthPoints) {
 		super(ImageCache.getSequentialImages("enemies/peasant/peasant", 1, 19,
 				".png", 3));
-		
+
 		this.maxHealthPoints = maxHealthPoints;
 		this.currentHealth = this.maxHealthPoints;
 
@@ -41,6 +44,16 @@ public class Peasant extends GSprite {
 
 		PolygonController pc = new PolygonController(p);
 
+		addListener(new TimerListener(5) {
+			@Override
+			public void invoke(GObject target, Context context) {
+				this.setInterval((int) (Math.random() * 150) + 100);
+				ScaleTween st = new ScaleTween(5, 1, 10);
+				st.chain(new ScaleTween(5, 10, 1));
+				addController(st);
+			}
+		});
+
 		pc.goToStart(this);
 		pc.setRotateToFollow(false);
 
@@ -51,20 +64,21 @@ public class Peasant extends GSprite {
 		BoundaryRemovalListener brl = new BoundaryRemovalListener();
 		this.addListener(brl);
 
-		
 	}
-	
+
 	public void setCurrentHealth(double currentHealth) {
 		this.currentHealth = currentHealth;
 		hb.setHealthPercentage(this.currentHealth / maxHealthPoints);
 	}
+
 	public void setHealthPoints(int healthPoints) {
 		this.maxHealthPoints = healthPoints;
 	}
+
 	public void changeHealthPoints(int i) {
 		currentHealth += i;
 		hb.setHealthPercentage(this.currentHealth / maxHealthPoints);
-		//System.out.println(currentHealth);
+		// System.out.println(currentHealth);
 	}
 
 	public double getHealthPoints() {
