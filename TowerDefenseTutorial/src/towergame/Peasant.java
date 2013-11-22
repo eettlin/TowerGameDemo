@@ -9,7 +9,6 @@ import jgame.controller.PolygonController;
 import jgame.listener.BoundaryRemovalListener;
 
 public class Peasant extends GSprite {
-	
 
 	private double maxHealthPoints  = 100;
 	private double currentHealth;
@@ -21,16 +20,12 @@ public class Peasant extends GSprite {
 		
 		this.maxHealthPoints = maxHealthPoints;
 		this.currentHealth = this.maxHealthPoints;
-		
-		
 
 		hb.setWidth(getWidth());
 		addAtCenter(hb);
 		hb.setY(this.getHeight() - hb.getHeight() / 2);
 		hb.setHealthPercentage(1);
-		
 
-		
 		// waypoints to follow map bg6.png in the areas folder
 		int[] x = new int[] { 742, 716, 691, 665, 639, 614, 588, 562, 537, 512,
 				486, 461, 436, 410, 385, 360, 335, 313, 299, 308, 285, 260,
@@ -76,12 +71,8 @@ public class Peasant extends GSprite {
 		return currentHealth;
 	}
 
-	
-
 	public double getSlowness() {
 		return 5;
 	}
-
-	
 
 }

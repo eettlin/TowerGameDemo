@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 import jgame.Context;
 import jgame.GContainer;
 import jgame.GObject;
+import jgame.GParallax;
 import jgame.GSprite;
 import jgame.ImageCache;
 import jgame.controller.Interpolation;
 import jgame.controller.MovementTween;
 import jgame.controller.ScaleTween;
-import jgame.listener.FrameListener;
 import jgame.listener.TimerListener;
 
 public class LOnePlayArea extends GContainer {
@@ -47,24 +47,31 @@ public class LOnePlayArea extends GContainer {
 		flag4.setScale(.44);
 		addAt(flag4, 112, 374);
 
-		final Cloud cloud1 = new Cloud();
-		addAt(cloud1, 600, 50);
-		MovementTween c1mt = new MovementTween(850, Interpolation.LINEAR, -900,
-				0); // cloud1 movement tween
-		cloud1.addController(c1mt);
+		/*
+		 * final Cloud cloud1 = new Cloud(); addAt(cloud1, 600, 50);
+		 * MovementTween c1mt = new MovementTween(850, Interpolation.LINEAR,
+		 * -900, 0); // cloud1 movement tween cloud1.addController(c1mt);
+		 * 
+		 * final Cloud cloud2 = new Cloud(); addAt(cloud2, 300, 100);
+		 * MovementTween c2mt = new MovementTween(1250, Interpolation.LINEAR,
+		 * -850, 0); // cloud1 movement tween cloud2.addController(c2mt);
+		 * 
+		 * final Cloud cloud3 = new Cloud(); addAt(cloud3, 500, 200);
+		 * cloud3.setScale(1.5); MovementTween c3mt = new MovementTween(1050,
+		 * Interpolation.LINEAR, -1000, 0); // cloud1 movement tween
+		 * cloud3.addController(c3mt);
+		 */
 
-		final Cloud cloud2 = new Cloud();
-		addAt(cloud2, 300, 100);
-		MovementTween c2mt = new MovementTween(1250, Interpolation.LINEAR,
-				-850, 0); // cloud1 movement tween
-		cloud2.addController(c2mt);
-
-		final Cloud cloud3 = new Cloud();
-		addAt(cloud3, 500, 200);
-		cloud3.setScale(1.5);
-		MovementTween c3mt = new MovementTween(1050, Interpolation.LINEAR,
-				-1000, 0); // cloud1 movement tween
-		cloud3.addController(c3mt);
+		int cloudCount = 6;
+		GParallax gpxClouds = new GParallax(cloudCount);
+		gpxClouds.setSize(800, 300);
+		for (int i = 0; i < cloudCount; i++) {
+			Cloud c = new Cloud();
+			gpxClouds.setLayerSprite(i, c);
+			gpxClouds.scrollLayerAt(i, -Math.ceil((300 - c.cloudY) / 10d), 0);
+		}
+		gpxClouds.setAnchorTopLeft();
+		addAt(gpxClouds, 0, 0);
 
 		MovementTween smt = new MovementTween(900, Interpolation.EASE_OUT,
 				-300, 800); // sun movement tween

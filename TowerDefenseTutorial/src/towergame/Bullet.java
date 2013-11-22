@@ -24,19 +24,15 @@ public class Bullet extends GSprite {
 				// 2. if peasant hp <= 0 remove peasant
 				// 3. in any case remove the bullet
 				// 4. add value to bank
-
 				List<Peasant> pl = context.hitTestClass(Peasant.class);
 				for (Peasant peasant : pl) {
 					peasant.changeHealthPoints(-10); // step 1
-					
 					if (peasant.getHealthPoints() <= 0) {
 						peasant.removeSelf(); // step 2
-
 						TGLevelOneView tglov = getFirstAncestorOf(TGLevelOneView.class);
 						tglov.changeBankValue(+50);
 					}
 				}
-
 				target.removeSelf(); // step 3
 			}
 		};
