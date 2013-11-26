@@ -68,7 +68,7 @@ public class LOnePlayArea extends GContainer {
 		for (int i = 0; i < cloudCount; i++) {
 			Cloud c = new Cloud();
 			gpxClouds.setLayerSprite(i, c);
-			gpxClouds.scrollLayerAt(i, -Math.ceil((300 - c.cloudY) / 10d), 0);
+			gpxClouds.scrollLayerAt(i, -Math.ceil((300 - c.cloudY) / 200d), 0);
 		}
 		gpxClouds.setAnchorTopLeft();
 		addAt(gpxClouds, 0, 0);

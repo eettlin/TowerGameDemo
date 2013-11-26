@@ -29,6 +29,7 @@ public abstract class Turret extends GSprite {
 				if (pl.isEmpty()) {
 					return;
 				}
+
 				for (Peasant p : pl) {
 					double dist = target.distanceTo(p);
 					if (dist < closest) {
@@ -44,7 +45,8 @@ public abstract class Turret extends GSprite {
 					}
 					int frameIndex = (int) (angleToEnemy / 8);
 					setFrameNumber(frameIndex);
-					if (--counter == 0) {
+					if (--counter <= 0
+							&& (target.distanceTo(currentPeasant) < 200)) {
 						counter = 5;
 						fireBullet(angleToEnemy);
 					}
