@@ -31,7 +31,7 @@ public class Bullet extends GSprite {
 					if (peasant.getHealthPoints() <= 0) {
 						peasant.removeSelf(); // step 2
 						TGLevelOneView tglov = getFirstAncestorOf(TGLevelOneView.class);
-						tglov.changeBankValue(+50);
+						tglov.changeMoneyBankValue(+50);
 					}
 				}
 				target.removeSelf(); // step 3

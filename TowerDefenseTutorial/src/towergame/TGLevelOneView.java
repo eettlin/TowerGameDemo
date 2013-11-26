@@ -5,16 +5,16 @@ import java.awt.Color;
 import jgame.Context;
 import jgame.GContainer;
 import jgame.GObject;
-import jgame.ImageCache;
 import jgame.controller.MouseLocationController;
 import jgame.listener.LocalClickListener;
 
 public class TGLevelOneView extends GContainer {
 
-	private Bank levelOneBank = new Bank(300);
+	private Bank moneyBank = new Bank(300);
+	private Bank lifeBank = new Bank(100);
 
 	private LOnePlayArea pal1 = new LOnePlayArea();
-	private l1InfoArea ial1 = new l1InfoArea(levelOneBank);
+	private l1InfoArea ial1 = new l1InfoArea(moneyBank, lifeBank);
 	private MenuArea mal1 = new MenuArea();
 	private boolean settingTurret = false;
 
@@ -25,8 +25,8 @@ public class TGLevelOneView extends GContainer {
 	 * @param delta
 	 *            the amount by which to change the bank
 	 */
-	public void changeBankValue(int delta) {
-		levelOneBank.changeBankValue(delta);
+	public void changeMoneyBankValue(int delta) {
+		moneyBank.changeBankValue(delta);
 	}
 
 	public TGLevelOneView() {
@@ -54,12 +54,12 @@ public class TGLevelOneView extends GContainer {
 
 		Turret t = chooseTurret(tn);
 		// Check to see if I have suff funds for a turret else return
-		if (t.getTurretValue() > levelOneBank.getBankValue()) {
+		if (t.getTurretValue() > moneyBank.getBankValue()) {
 			return;
 		}
 		settingTurret = true;
 		// change bank value
-		levelOneBank.changeBankValue(-t.getTurretValue());
+		moneyBank.changeBankValue(-t.getTurretValue());
 		// update info area
 
 		t.setScale(.33);
@@ -96,6 +96,10 @@ public class TGLevelOneView extends GContainer {
 			return null;
 		}
 
+	}
+
+	public void changeLifeBankValue(int delta) {
+		lifeBank.changeBankValue(delta);
 	}
 
 }
