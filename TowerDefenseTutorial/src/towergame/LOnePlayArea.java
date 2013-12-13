@@ -26,9 +26,7 @@ public class LOnePlayArea extends GContainer {
 		final Moon moon = new Moon();
 		addAt(moon, 150, 700);
 
-		BufferedImage bg = ImageCache.forClass(TowerGame.class).get(
-				"areas/bg6.png");
-		final GSprite gs = new GSprite(bg);
+		final GSprite gs = ImageCache.getSprite("areas/bg6.png");
 		addAt(gs, 400, 425);
 
 		final Falg flag1 = new Falg();// mid right

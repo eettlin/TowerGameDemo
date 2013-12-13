@@ -17,7 +17,8 @@ public class l1InfoArea extends GSprite {
 
 	public l1InfoArea(final Bank bv, final Bank lb) { // sets the reference to
 														// final value
-		super(ImageCache.forClass(TowerGame.class).get("/areas/infoarea.png"));
+		super(ImageCache.getSprite("/areas/infoarea.png"));
+		setSize(900, 100);
 
 		// setBankValue(bv.getBankValue());
 		moneyBankValue.setLocation(100, 30);

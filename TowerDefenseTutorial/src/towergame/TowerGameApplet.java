@@ -7,17 +7,18 @@ import jgame.GameApplet;
 import jgame.ImageCache;
 import jgame.SoundManager;
 
-public class TowerGame extends GameApplet {
+public class TowerGameApplet extends GameApplet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public TowerGame() {
-		ImageCache.create(TowerGame.class, "/towergame/tgrsc/tgimages/");
-		SoundManager.create(TowerGame.class, "/towergame/tgrsc/tgsounds/");
-		
+	public TowerGameApplet() {
+		ImageCache.create(TowerGameApplet.class, "/towergame/tgrsc/tgimages/");
+		SoundManager
+				.create(TowerGameApplet.class, "/towergame/tgrsc/tgsounds/");
+
 		GRootContainer root = new GRootContainer(Color.BLACK);
 		core.setRootContainer(root);
 

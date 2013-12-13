@@ -1,8 +1,6 @@
 package towergame;
 
-import javax.swing.text.View;
-
-import towergame.TowerGame.Views;
+import towergame.TowerGameApplet.Views;
 
 import jgame.ButtonState;
 import jgame.Context;
@@ -15,16 +13,13 @@ import jgame.listener.ButtonListener;
 public class TGMenuView extends GContainer {
 
 	public TGMenuView() {
-		setSize(900, 700);
 		MenuBackground mbg = new MenuBackground();
-		addAtCenter(mbg);
+		setBackgroundSprite(mbg);
+		setSize(900, 700);
 
-		GSprite none_img = new GSprite(ImageCache.forClass(TowerGame.class)
-				.get("buttons/playnone.png"));
-		GSprite hover_img = new GSprite(ImageCache.forClass(TowerGame.class)
-				.get("buttons/playhover.png"));
-		GSprite pressed_img = new GSprite(ImageCache.forClass(TowerGame.class)
-				.get("buttons/playpressed.png"));
+		GSprite none_img = ImageCache.getSprite("buttons/playnone.png");
+		GSprite hover_img = ImageCache.getSprite("buttons/playhover.png");
+		GSprite pressed_img = ImageCache.getSprite("buttons/playpressed.png");
 
 		// Play Button
 		GButton play_btn = new GButton();
